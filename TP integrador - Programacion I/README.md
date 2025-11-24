@@ -297,6 +297,110 @@ Ingrese el Nombre (o parte del Nombre) del pais a buscar: xyz
 No se encontraron paises con ese criterio de busqueda/filtro.
 ```
 
+
+# Diagrama de Flujo
+
+A continuacion se presenta el diagrama de flujo que muestra las operaciones principales del programa:
+
+```mermaid
+flowchart TD
+    A[Inicio] --> B[Cargar datos desde paises.csv]
+    B --> C{Archivo existe?}
+    C -->|No| D[Iniciar con lista vacia]
+    C -->|Si| E[Leer y validar datos CSV]
+    E --> F[Cargar paises en memoria]
+    D --> G[Mostrar Menu Principal]
+    F --> G
+    
+    G --> H[Usuario selecciona opcion]
+    H --> I{Opcion seleccionada}
+    
+    I -->|1| J[Agregar un pais]
+    J --> J1[Solicitar nombre del pais]
+    J1 --> J2{Verificar si pais existe}
+    J2 -->|Existe| J3[Mostrar error: Pais duplicado]
+    J2 -->|No existe| J4[Solicitar poblacion, superficie y continente]
+    J4 --> J5[Validar datos ingresados]
+    J5 --> J6[Agregar pais a lista PAISES]
+    J3 --> G
+    J6 --> G
+    
+    I -->|2| K[Actualizar Poblacion y Superficie]
+    K --> K1[Solicitar nombre del pais a actualizar]
+    K1 --> K2[Buscar pais en lista]
+    K2 --> K3{Pais encontrado?}
+    K3 -->|No| K4[Mostrar error: Pais no encontrado]
+    K3 -->|Si| K5[Mostrar datos actuales]
+    K5 --> K6[Solicitar nueva poblacion y superficie]
+    K6 --> K7[Actualizar datos en lista PAISES]
+    K4 --> G
+    K7 --> G
+    
+    I -->|3| L[Buscar pais por Nombre]
+    L --> L1[Solicitar nombre o parte del nombre]
+    L1 --> L2[Buscar coincidencias exactas]
+    L2 --> L3{Coincidencias exactas?}
+    L3 -->|Si| L4[Mostrar resultados exactos]
+    L3 -->|No| L5[Buscar coincidencias parciales]
+    L5 --> L6[Mostrar resultados parciales]
+    L4 --> G
+    L6 --> G
+    
+    I -->|4| M[Filtrar por Continente]
+    M --> M1[Solicitar nombre del continente]
+    M1 --> M2[Recorrer lista PAISES]
+    M2 --> M3[Filtrar paises del continente]
+    M3 --> M4[Mostrar resultados filtrados]
+    M4 --> G
+    
+    I -->|5| N[Filtrar por Rango de Poblacion]
+    N --> N1[Solicitar valor minimo y maximo]
+    N1 --> N2{Minimo > Maximo?}
+    N2 -->|Si| N3[Mostrar error]
+    N2 -->|No| N4[Recorrer lista PAISES]
+    N4 --> N5[Filtrar paises en rango]
+    N5 --> N6[Mostrar resultados filtrados]
+    N3 --> G
+    N6 --> G
+    
+    I -->|6| O[Filtrar por Rango de Superficie]
+    O --> O1[Solicitar valor minimo y maximo]
+    O1 --> O2{Minimo > Maximo?}
+    O2 -->|Si| O3[Mostrar error]
+    O2 -->|No| O4[Recorrer lista PAISES]
+    O4 --> O5[Filtrar paises en rango]
+    O5 --> O6[Mostrar resultados filtrados]
+    O3 --> G
+    O6 --> G
+    
+    I -->|7| P[Ordenar paises]
+    P --> P1[Solicitar criterio de ordenamiento]
+    P1 --> P2{Criterio seleccionado}
+    P2 -->|Superficie| P3[Solicitar orden A/D]
+    P2 -->|Nombre o Poblacion| P4[Ordenar ascendente]
+    P3 --> P5[Aplicar algoritmo de ordenamiento]
+    P4 --> P5
+    P5 --> P6[Mostrar lista ordenada]
+    P6 --> G
+    
+    I -->|8| Q[Mostrar Estadisticas]
+    Q --> Q1[Calcular pais con mayor poblacion]
+    Q1 --> Q2[Calcular pais con menor poblacion]
+    Q2 --> Q3[Calcular promedios de poblacion y superficie]
+    Q3 --> Q4[Contar paises por continente]
+    Q4 --> Q5[Mostrar todas las estadisticas]
+    Q5 --> G
+    
+    I -->|0| R[Guardar datos en CSV]
+    R --> R1[Abrir archivo paises.csv en modo escritura]
+    R1 --> R2[Escribir encabezados]
+    R2 --> R3[Recorrer lista PAISES]
+    R3 --> R4[Escribir cada pais en CSV]
+    R4 --> R5[Cerrar archivo]
+    R5 --> S[Fin]
+```
+
+
 ---
 
 ## Participación de los Integrantes
@@ -304,3 +408,4 @@ No se encontraron paises con ese criterio de busqueda/filtro.
 ### Integrante 1: [Julio Alberto Maidana]
 ### Integrante 2: [Franco Adrian Pagnotta]
 ---
+
