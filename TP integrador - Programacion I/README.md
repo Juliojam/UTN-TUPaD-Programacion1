@@ -300,7 +300,8 @@ No se encontraron paises con ese criterio de busqueda/filtro.
 
 # Diagrama de Flujo
 
-A continuacion se presenta el diagrama de flujo que muestra las operaciones principales del programa:
+A continuacion se presenta el diagrama de flujo que muestra las operaciones principales del programa. Para visualizarlo se debe
+copiar y pegar el codigo (desde flowchart TD hasta el final sin incluir las comillas) en https://mermaid.live:
 
 ```mermaid
 flowchart TD
