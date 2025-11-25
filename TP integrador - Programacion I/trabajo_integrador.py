@@ -6,6 +6,7 @@ NOMBRE_ARCHIVO_CSV = 'paises.csv'
 
 def cargar_datos_desde_csv(nombre_archivo):
     global PAISES
+    
     paises_cargados = []
     
     if not os.path.exists(nombre_archivo):
@@ -58,56 +59,6 @@ def cargar_datos_desde_csv(nombre_archivo):
     
     print(f"Carga exitosa. {len(PAISES)} paises cargados.")
     return
-
-def obtener_fila_normalizada(fila):
-    return { (clave or '').strip().lower(): (valor or '').strip() for clave, valor in fila.items() if clave }
-
-def parsear_campo_entero(valor):
-    valor_cadena = (valor or '').replace(',', '').replace('.', '').strip()
-    if valor_cadena == '':
-        return None
-    if valor_cadena.isdigit():
-        return int(valor_cadena)
-    else:
-        return None
-
-def guardar_datos_a_csv(nombre_archivo):
-    encabezados = ['nombre', 'poblacion', 'superficie', 'continente']
-    
-    with open(nombre_archivo, mode='w', newline='', encoding='utf-8') as archivo:
-        escritor = csv.writer(archivo)
-        escritor.writerow(encabezados)
-        
-        for pais in PAISES:
-            fila = [
-                pais.get('Nombre', ''),
-                pais.get('Población', ''),
-                pais.get('Superficie', ''),
-                pais.get('Continente', '')
-            ]
-            
-            escritor.writerow(fila)
-    print(f"cambios guardados en '{nombre_archivo}'.")
-    return
-
-def validar_entero_positivo(prompt):
-    while True:
-        valor = input(prompt).strip()
-        valor_normalizado = valor.replace(',', '').replace('.', '').strip()
-
-        if valor_normalizado and valor_normalizado.isdigit():
-            numero = int(valor_normalizado)
-            if numero >= 0:
-                return numero
-
-        print("Entrada invalida. Debe ser un numero entero positivo.")
-
-def validar_cadena_no_vacia(prompt):
-    while True:
-        valor_cadena = input(prompt).strip()
-        if valor_cadena:
-            return valor_cadena
-        print("El campo no puede estar vacio.")
 
 def agregar_pais():
     nombre = validar_cadena_no_vacia("Ingrese Nombre del Pais: ")
@@ -373,6 +324,58 @@ def mostrar_menu():
     print("8. Mostrar Estadisticas")
     print("0. Salir (Guardar y cerrar)")
     print("-------------------------------------------")
+
+# Funciones Auxiliares
+def obtener_fila_normalizada(fila):
+    return { (clave or '').strip().lower(): (valor or '').strip() for clave, valor in fila.items() if clave }
+
+def parsear_campo_entero(valor):
+    valor_cadena = (valor or '').replace(',', '').replace('.', '').strip()
+    if valor_cadena == '':
+        return None
+    if valor_cadena.isdigit():
+        return int(valor_cadena)
+    else:
+        return None
+
+def guardar_datos_a_csv(nombre_archivo):
+    encabezados = ['nombre', 'poblacion', 'superficie', 'continente']
+    
+    with open(nombre_archivo, mode='w', newline='', encoding='utf-8') as archivo:
+        escritor = csv.writer(archivo)
+        escritor.writerow(encabezados)
+        
+        for pais in PAISES:
+            fila = [
+                pais.get('Nombre', ''),
+                pais.get('Población', ''),
+                pais.get('Superficie', ''),
+                pais.get('Continente', '')
+            ]
+            
+            escritor.writerow(fila)
+    print(f"cambios guardados en '{nombre_archivo}'.")
+    return
+
+def validar_entero_positivo(prompt):
+    while True:
+        valor = input(prompt).strip()
+        valor_normalizado = valor.replace(',', '').replace('.', '').strip()
+
+        if valor_normalizado and valor_normalizado.isdigit():
+            numero = int(valor_normalizado)
+            if numero >= 0:
+                return numero
+
+        print("Entrada invalida. Debe ser un numero entero positivo.")
+
+def validar_cadena_no_vacia(prompt):
+    while True:
+        valor_cadena = input(prompt).strip()
+        if valor_cadena:
+            return valor_cadena
+        print("El campo no puede estar vacio.")
+# Fin Funciones Auxiliares
 
 def main():
     cargar_datos_desde_csv(NOMBRE_ARCHIVO_CSV)
