@@ -1,3 +1,6 @@
+# Trabajo Practico Integrador - UTN - Facultad Regional San Nicolas
+
+
 # Sistema de Gestión de Datos de Países
 
 ## Descripción del Programa
@@ -23,7 +26,9 @@ Cada país se almacena como un diccionario con la siguiente estructura:
 
 El archivo CSV contiene las columnas: `nombre`, `poblacion`, `superficie`, `continente`.
 
----
+### Librerias
+- **OS**: Modulo de python que proporciona herramientas para usar funciones dependientes del sistema operativo como leer o escribir en el sistema de archivos.
+- **CSV**: Modulo de python que implementa clases para leer y escribir datos tabulares en formato CSV.
 
 ## Instrucciones de Uso
 
@@ -401,12 +406,14 @@ flowchart TD
     R5 --> S[Fin]
 ```
 
-
----
+## Link al video y repositorio de Github
+- video
+- [repo Github](https://github.com/Juliojam/UTN-TUPaD-Programacion1/tree/main/TP%20integrador%20-%20Programacion%20I)
 
 ## Participación de los Integrantes
 
-### Integrante 1: [Julio Alberto Maidana]
-### Integrante 2: [Franco Adrian Pagnotta]
+### Profesora: [Martina Zabala]
+### Integrante 1: [Julio Alberto Maidana] - Comision 7
+### Integrante 2: [Franco Adrian Pagnotta] - Comision 5
 ---
 
